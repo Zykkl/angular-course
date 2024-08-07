@@ -14,7 +14,7 @@ import { UserComponent } from "./user/user.component";
 })
 export class AppComponent {
   users = DUMMY_USERS;
-  currentUserId = "u1";
+  currentUserId?: string;
 
   get currentUser() {
     return this.users.find((user) => user.id === this.currentUserId);
