@@ -5,7 +5,11 @@
     <!-- <li *ngFor="let user of users"> -->
     @for (user of users; track user.id) {
     <li>
-      <app-user [user]="user" (select)="onUserSelect($event)" />
+      <app-user
+        [selected]="user.id === currentUserId"
+        [user]="user"
+        (select)="onUserSelect($event)"
+      />
     </li>
     }
   </ul>
