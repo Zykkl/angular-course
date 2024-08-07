@@ -14,9 +14,13 @@ import { UserComponent } from "./user/user.component";
 })
 export class AppComponent {
   users = DUMMY_USERS;
-  currentUserName = DUMMY_USERS[0].name;
+  currentUserId = "u1";
 
-  onUserSelect(name: string) {
-    this.currentUserName = name;
+  get currentUser() {
+    return this.users.find((user) => user.id === this.currentUserId)!;
+  }
+
+  onUserSelect(id: string) {
+    this.currentUserId = id;
   }
 }
