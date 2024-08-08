@@ -8,7 +8,6 @@ import { UserComponent } from './user/user.component';
 import { TaskComponent } from './tasks/task/task.component';
 import { NewTaskComponent } from './tasks/new-task/new-task.component';
 import { CardComponent } from './shared/card/card.component';
-import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -22,6 +21,6 @@ import { FormsModule } from '@angular/forms';
     NewTaskComponent,
   ],
   bootstrap: [AppComponent],
-  imports: [BrowserModule, FormsModule, DatePipe],
+  imports: [BrowserModule, FormsModule],
 })
 export class AppModule {}
