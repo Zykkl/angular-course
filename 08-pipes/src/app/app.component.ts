@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {DatePipe, DecimalPipe} from "@angular/common";
 import {TemperaturePipe} from "./temperature.pipe";
+import {SortPipe} from "./sort.pipe";
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,8 @@ import {TemperaturePipe} from "./temperature.pipe";
   imports: [
     DatePipe,
     DecimalPipe,
-    TemperaturePipe
+    TemperaturePipe,
+    SortPipe
   ]
 })
 export class AppComponent {
