@@ -55,4 +55,5 @@ workflows:
                   "06-custom-2way-binding",
                   "07-directives",
                   "08-pipes",
+                  "09-services-di",
                 ]
