@@ -1,14 +1,14 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input } from '@angular/core';
 
-import { NewTaskComponent } from "./new-task/new-task.component";
-import { TaskComponent } from "./task/task.component";
-import { TasksService } from "./tasks.service";
+import { NewTaskComponent } from './new-task/new-task.component';
+import { TaskComponent } from './task/task.component';
+import { TasksService } from './tasks.service';
 
 @Component({
-  selector: "app-tasks",
+  selector: 'app-tasks',
   standalone: true,
-  templateUrl: "./tasks.component.html",
-  styleUrl: "./tasks.component.css",
+  templateUrl: './tasks.component.html',
+  styleUrl: './tasks.component.css',
   imports: [TaskComponent, NewTaskComponent],
 })
 export class TasksComponent {
