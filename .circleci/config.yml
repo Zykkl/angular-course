@@ -33,7 +33,7 @@ jobs:
           name: Build Angular Project
           command: |
             cd << parameters.project_name >>
-            npm run build -- --prod
+            npm run build
 
 workflows:
   version: 2
