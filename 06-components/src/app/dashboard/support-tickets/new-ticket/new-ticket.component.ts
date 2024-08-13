@@ -1,8 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ButtonComponent } from '../../../shared/button/button.component';
 import { ControlComponent } from '../../../shared/control/control.component';
 import { FormsModule } from '@angular/forms';
-import { SupportTicketsService } from '../support-tickets.service';
 
 @Component({
   selector: 'app-new-ticket',
@@ -12,14 +11,13 @@ import { SupportTicketsService } from '../support-tickets.service';
   styleUrl: './new-ticket.component.css',
 })
 export class NewTicketComponent {
-  title = '';
-  description = '';
-  private ticketService = inject(SupportTicketsService); // TODO throws NullInjectionError
+  @ViewChild('form') form?: ElementRef<HTMLFormElement>;
 
-  onSubmit() {
+  onSubmit(title: string, description: string) {
     console.log({
-      title: this.title,
-      description: this.description,
+      title: title,
+      description: description,
     });
+    this.form?.nativeElement.reset();
   }
 }
