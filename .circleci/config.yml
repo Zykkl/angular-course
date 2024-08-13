@@ -1,0 +1,48 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@5.2
+
+jobs:
+  lint:
+    docker:
+      - image: cimg/base:stable
+    resource_class: small
+    steps:
+      - checkout
+      - node/install
+      - run:
+          name: Run Prettier on Project Sources
+          command: |
+            npx prettier --check .
+
+  build:
+    docker:
+      - image: cimg/base:stable
+    resource_class: small
+    parameters:
+      project_name:
+        type: string
+    steps:
+      - node/install
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            cd << parameters.project_name >>
+            npm install
+      - run:
+          name: Build Angular Project
+          command: |
+            cd << parameters.project_name >>
+            npm run build
+
+workflows:
+  version: 2
+  build-and-lint:
+    jobs:
+      - lint
+      - build:
+          matrix:
+            parameters:
+              project_name: ["02-essentials", "02-essentials-ngmodule", "04-practice", "05-debugging", "06-components", "06-custom-2way-binding", "07-directives"]
