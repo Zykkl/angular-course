@@ -45,4 +45,13 @@ workflows:
       - build:
           matrix:
             parameters:
-              project_name: ["02-essentials", "02-essentials-ngmodule", "04-practice", "05-debugging", "06-components", "06-custom-2way-binding", "07-directives"]
+              project_name:
+                [
+                  "02-essentials",
+                  "02-essentials-ngmodule",
+                  "04-practice",
+                  "05-debugging",
+                  "06-components",
+                  "06-custom-2way-binding",
+                  "07-directives",
+                ]

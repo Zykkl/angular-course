@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import {ExternalRedirectDirective} from "../external-redirect.directive";
+import { ExternalRedirectDirective } from '../external-redirect.directive';
 
 @Component({
   selector: 'app-learning-resources',
   templateUrl: './learning-resources.component.html',
   styleUrl: './learning-resources.component.css',
   standalone: true,
-  imports: [
-    ExternalRedirectDirective
-  ]
+  imports: [ExternalRedirectDirective],
 })
 export class LearningResourcesComponent {}

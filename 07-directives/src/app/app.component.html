@@ -5,7 +5,13 @@
 
   <app-auth />
 
-  <p *appAuth="'admin'" class="protected-content admin">Only admins can see this</p>
-  <p *appAuth="'user'" class="protected-content unauthenticated">Only users can see this</p>
-  <p *appAuth="'guest'" class="protected-content authenticated">Only guests can see this</p>
+  <p *appAuth="'admin'" class="protected-content admin">
+    Only admins can see this
+  </p>
+  <p *appAuth="'user'" class="protected-content unauthenticated">
+    Only users can see this
+  </p>
+  <p *appAuth="'guest'" class="protected-content authenticated">
+    Only guests can see this
+  </p>
 </main>
