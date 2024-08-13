@@ -1,27 +1,28 @@
 version: 2.1
 
-executors:
-  node-executor:
-    docker:
-      - image: circleci/node:18
-    working_directory: ~/repo
+orbs:
+  node: circleci/node@5.2
 
 jobs:
   lint:
-    executor: node-executor
+    docker:
+      - image: cimg/base:stable
     steps:
       - checkout
+      - node/install
       - run:
           name: Run Prettier on Project Sources
           command: |
             npx prettier --check .
 
   build:
-    executor: node-executor
+    docker:
+      - image: cimg/base:stable
     parameters:
       project_name:
         type: string
     steps:
+      - node/install
       - checkout
       - run:
           name: Install dependencies
