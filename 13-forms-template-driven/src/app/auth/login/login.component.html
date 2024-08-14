@@ -31,9 +31,9 @@
     <button class="button">Login</button>
   </div>
   @if (email.touched && email.invalid && email.dirty) {
-  <p class="control-error">Invalid email address</p>
+    <p class="control-error">Invalid email address</p>
   }
   @if (password.touched && password.invalid && password.dirty) {
-  <p class="control-error">Password must be at least 6 characters</p>
+    <p class="control-error">Password must be at least 6 characters</p>
   }
 </form>

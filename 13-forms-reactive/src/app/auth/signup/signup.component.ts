@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 import {
   AbstractControl,
   FormArray,
@@ -6,7 +6,7 @@ import {
   FormGroup,
   ReactiveFormsModule,
   Validators,
-} from "@angular/forms";
+} from '@angular/forms';
 
 function equalValues(controlName1: string, controlName2: string) {
   return (control: AbstractControl) => {
@@ -20,39 +20,39 @@ function equalValues(controlName1: string, controlName2: string) {
 }
 
 @Component({
-  selector: "app-signup",
+  selector: 'app-signup',
   standalone: true,
   imports: [ReactiveFormsModule],
-  templateUrl: "./signup.component.html",
-  styleUrl: "./signup.component.css",
+  templateUrl: './signup.component.html',
+  styleUrl: './signup.component.css',
 })
 export class SignupComponent {
   form = new FormGroup({
-    email: new FormControl("", [Validators.required, Validators.email]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     passwords: new FormGroup(
       {
-        password: new FormControl("", [
+        password: new FormControl('', [
           Validators.required,
           Validators.minLength(6),
         ]),
-        confirmPassword: new FormControl("", [
+        confirmPassword: new FormControl('', [
           Validators.required,
           Validators.minLength(6),
         ]),
       },
-      [equalValues("password", "confirmPassword")]
+      [equalValues('password', 'confirmPassword')],
     ),
-    firstName: new FormControl("", [Validators.required]),
-    lastName: new FormControl("", [Validators.required]),
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
     address: new FormGroup({
-      street: new FormControl("", [Validators.required]),
-      number: new FormControl("", [Validators.required]),
-      postalCode: new FormControl("", [Validators.required]),
-      city: new FormControl("", [Validators.required]),
+      street: new FormControl('', [Validators.required]),
+      number: new FormControl('', [Validators.required]),
+      postalCode: new FormControl('', [Validators.required]),
+      city: new FormControl('', [Validators.required]),
     }),
     role: new FormControl<
-      "student" | "teacher" | "employee" | "founder" | "other"
-    >("student", [Validators.required]),
+      'student' | 'teacher' | 'employee' | 'founder' | 'other'
+    >('student', [Validators.required]),
     source: new FormArray([
       new FormControl(false),
       new FormControl(false),
@@ -63,7 +63,7 @@ export class SignupComponent {
 
   onSubmit() {
     if (this.form.invalid) {
-      console.log("invalid form");
+      console.log('invalid form');
       return;
     }
     console.log(this.form);

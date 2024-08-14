@@ -1,22 +1,22 @@
-import { Component, DestroyRef, inject, OnInit } from "@angular/core";
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
-} from "@angular/forms";
-import { debounceTime } from "rxjs";
+} from '@angular/forms';
+import { debounceTime } from 'rxjs';
 
 function mustContainQuesitonMark(control: AbstractControl) {
-  if (control.value.includes("?")) {
+  if (control.value.includes('?')) {
     return null;
   }
   return { mustContainQuesitonMark: true };
 }
 
-let initialEmailValue = "";
-const savedForm = window.localStorage.getItem("saved-login-form");
+let initialEmailValue = '';
+const savedForm = window.localStorage.getItem('saved-login-form');
 
 if (savedForm) {
   const { email } = JSON.parse(savedForm);
@@ -24,11 +24,11 @@ if (savedForm) {
 }
 
 @Component({
-  selector: "app-login",
+  selector: 'app-login',
   standalone: true,
   imports: [ReactiveFormsModule],
-  templateUrl: "./login.component.html",
-  styleUrl: "./login.component.css",
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css',
 })
 export class LoginComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
       Validators.required,
       Validators.email,
     ]),
-    password: new FormControl("", [
+    password: new FormControl('', [
       Validators.required,
       Validators.minLength(6),
       mustContainQuesitonMark,
@@ -66,8 +66,8 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next: (value) => {
           window.localStorage.setItem(
-            "saved-login-form",
-            JSON.stringify({ email: value.email })
+            'saved-login-form',
+            JSON.stringify({ email: value.email }),
           );
         },
       });
