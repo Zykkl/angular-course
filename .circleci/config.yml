@@ -56,4 +56,5 @@ workflows:
                   "07-directives",
                   "08-pipes",
                   "09-services-di",
+                  "12-http-requests",
                 ]
