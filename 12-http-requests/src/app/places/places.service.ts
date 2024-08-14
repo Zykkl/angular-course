@@ -1,12 +1,12 @@
-import { inject, Injectable, signal } from "@angular/core";
+import { inject, Injectable, signal } from '@angular/core';
 
-import { HttpClient } from "@angular/common/http";
-import { catchError, map, tap, throwError } from "rxjs";
-import { ErrorService } from "../shared/error.service";
-import { Place } from "./place.model";
+import { HttpClient } from '@angular/common/http';
+import { catchError, map, tap, throwError } from 'rxjs';
+import { ErrorService } from '../shared/error.service';
+import { Place } from './place.model';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class PlacesService {
   private userPlaces = signal<Place[]>([]);
@@ -17,15 +17,15 @@ export class PlacesService {
 
   loadAvailablePlaces() {
     return this.fetchPlaces(
-      "http://localhost:3000/places",
-      "Could not fetch available places"
+      'http://localhost:3000/places',
+      'Could not fetch available places',
     );
   }
 
   loadUserPlaces() {
     return this.fetchPlaces(
-      "http://localhost:3000/user-places",
-      "Could not fetch user places"
+      'http://localhost:3000/user-places',
+      'Could not fetch user places',
     ).pipe(tap({ next: (userPlaces) => this.userPlaces.set(userPlaces) }));
   }
 
@@ -36,17 +36,17 @@ export class PlacesService {
       this.userPlaces.set([...prevPlaces, place]);
     }
     return this.httpClient
-      .put("http://localhost:3000/user-places", {
+      .put('http://localhost:3000/user-places', {
         placeId: place.id,
       })
       .pipe(
         catchError(() => {
           this.userPlaces.set(prevPlaces);
-          this.errorService.showError("Could not add place to user places");
+          this.errorService.showError('Could not add place to user places');
           return throwError(
-            () => new Error("Could not add place to user places")
+            () => new Error('Could not add place to user places'),
           );
-        })
+        }),
       );
   }
 
@@ -59,19 +59,19 @@ export class PlacesService {
       .pipe(
         catchError(() => {
           this.errorService.showError(
-            "Could not remove place from user places"
+            'Could not remove place from user places',
           );
           return throwError(
-            () => new Error("Could not remove place from user places")
+            () => new Error('Could not remove place from user places'),
           );
-        })
+        }),
       );
   }
 
   private fetchPlaces(url: string, errorMsg: string) {
     return this.httpClient.get<{ places: Place[] }>(url).pipe(
       map((resData) => resData.places),
-      catchError(() => throwError(() => new Error(errorMsg)))
+      catchError(() => throwError(() => new Error(errorMsg))),
     );
   }
 }
