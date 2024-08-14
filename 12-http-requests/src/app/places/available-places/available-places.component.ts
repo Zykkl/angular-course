@@ -27,15 +27,13 @@ export class AvailablePlacesComponent implements OnInit {
       .pipe(
         map((resData) => resData.places),
         // not needed, just for demo
-        catchError(() =>
-          throwError(() => new Error("sum wrong aint right"))
-        )
+        catchError(() => throwError(() => new Error("sum wrong aint right")))
       )
       .subscribe({
         next: (resData) => {
           this.places.set(resData);
         },
-        error: (error : Error) => {
+        error: (error: Error) => {
           console.log(error);
         },
         complete: () => {
@@ -46,5 +44,11 @@ export class AvailablePlacesComponent implements OnInit {
     this.destroyRef.onDestroy(() => {
       subscription.unsubscribe();
     });
+  }
+
+  onSelectPlaces(place: Place) {
+    this.httpClient
+      .put("http://localhost:3000/user-places", { placeId: place.id })
+      .subscribe();
   }
 }
