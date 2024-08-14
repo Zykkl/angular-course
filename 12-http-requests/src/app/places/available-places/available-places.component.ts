@@ -1,7 +1,7 @@
 import { Component, DestroyRef, inject, OnInit, signal } from "@angular/core";
 
 import { HttpClient } from "@angular/common/http";
-import { map } from "rxjs";
+import { catchError, map, throwError } from "rxjs";
 import { Place } from "../place.model";
 import { PlacesContainerComponent } from "../places-container/places-container.component";
 import { PlacesComponent } from "../places.component";
@@ -16,6 +16,7 @@ import { PlacesComponent } from "../places.component";
 export class AvailablePlacesComponent implements OnInit {
   places = signal<Place[] | undefined>(undefined);
   isFetching = signal(false);
+  errorMsg = signal("");
   private httpClient = inject(HttpClient);
   private destroyRef = inject(DestroyRef);
 
@@ -23,10 +24,19 @@ export class AvailablePlacesComponent implements OnInit {
     this.isFetching.set(true);
     const subscription = this.httpClient
       .get<{ places: Place[] }>("http://localhost:3000/places")
-      .pipe(map((resData) => resData.places))
+      .pipe(
+        map((resData) => resData.places),
+        // not needed, just for demo
+        catchError(() =>
+          throwError(() => new Error("sum wrong aint right"))
+        )
+      )
       .subscribe({
         next: (resData) => {
           this.places.set(resData);
+        },
+        error: (error : Error) => {
+          console.log(error);
         },
         complete: () => {
           this.isFetching.set(false);
