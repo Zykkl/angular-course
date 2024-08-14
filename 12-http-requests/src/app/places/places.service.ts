@@ -28,10 +28,23 @@ export class PlacesService {
   }
 
   addPlaceToUserPlaces(place: Place) {
-    this.userPlaces.update((oldPlaces) => [...oldPlaces, place]);
-    return this.httpClient.put("http://localhost:3000/user-places", {
-      placeId: place.id,
-    });
+    const prevPlaces = this.userPlaces();
+
+    if (!prevPlaces.some((p) => p.id === place.id)) {
+      this.userPlaces.set([...prevPlaces, place]);
+    }
+    return this.httpClient
+      .put("http://localhost:3000/user-places", {
+        placeId: place.id,
+      })
+      .pipe(
+        catchError(() => {
+          this.userPlaces.set(prevPlaces);
+          return throwError(
+            () => new Error("Could not add place to user places")
+          );
+        })
+      );
   }
 
   removeUserPlace(place: Place) {}
