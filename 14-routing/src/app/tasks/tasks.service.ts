@@ -56,7 +56,7 @@ export class TasksService {
 
   removeTask(id: string) {
     this.tasks.update((prevTasks) =>
-      prevTasks.filter((task) => task.id !== id)
+      prevTasks.filter((task) => task.id !== id),
     );
     this.saveTasks();
   }

@@ -1,16 +1,16 @@
-import { DatePipe } from "@angular/common";
-import { Component, inject, input } from "@angular/core";
+import { DatePipe } from '@angular/common';
+import { Component, inject, input } from '@angular/core';
 
-import { ActivatedRoute, Router } from "@angular/router";
-import { CardComponent } from "../../shared/card/card.component";
-import { TasksService } from "../tasks.service";
-import { type Task } from "./task.model";
+import { ActivatedRoute, Router } from '@angular/router';
+import { CardComponent } from '../../shared/card/card.component';
+import { TasksService } from '../tasks.service';
+import { type Task } from './task.model';
 
 @Component({
-  selector: "app-task",
+  selector: 'app-task',
   standalone: true,
-  templateUrl: "./task.component.html",
-  styleUrl: "./task.component.css",
+  templateUrl: './task.component.html',
+  styleUrl: './task.component.css',
   imports: [DatePipe, CardComponent],
 })
 export class TaskComponent {
@@ -21,10 +21,10 @@ export class TaskComponent {
 
   onComplete() {
     this.tasksService.removeTask(this.task().id);
-    this.router.navigate(["./"], {
+    this.router.navigate(['./'], {
       relativeTo: this.activatedRoute,
-      onSameUrlNavigation: "reload",
-      queryParamsHandling: "preserve",
+      onSameUrlNavigation: 'reload',
+      queryParamsHandling: 'preserve',
     });
   }
 }

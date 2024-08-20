@@ -1,10 +1,10 @@
-import { ApplicationConfig } from "@angular/core";
+import { ApplicationConfig } from '@angular/core';
 import {
   provideRouter,
   withComponentInputBinding,
   withRouterConfig,
-} from "@angular/router";
-import { routes } from "./app.routes";
+} from '@angular/router';
+import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,8 +12,8 @@ export const appConfig: ApplicationConfig = {
       routes,
       withComponentInputBinding(),
       withRouterConfig({
-        paramsInheritanceStrategy: "always",
-      })
+        paramsInheritanceStrategy: 'always',
+      }),
     ),
   ],
 };

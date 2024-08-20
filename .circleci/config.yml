@@ -59,4 +59,5 @@ workflows:
                   "12-http-requests",
                   "13-forms-reactive",
                   "13-forms-template-driven",
+                  "14-routing",
                 ]
